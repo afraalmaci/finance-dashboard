@@ -2,6 +2,8 @@
 
 import { useDashboardStore } from "../store/dashboard-store";
 import { useDashboardData } from "../lib/use-dashboard-data";
+import { PortfolioChart } from "../components/portfolio-chart";
+import { SectorAllocationChart } from "../components/sector-allocation-chart";
 
 // Main dashboard page - orchestrates layout and data fetching
 export default function DashboardPage() {
@@ -75,10 +77,16 @@ export default function DashboardPage() {
           {/* Main content grid: chart + sector allocation (still placeholders) */}
           <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
             <div className="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 h-80">
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Portfolio Value Over Time</p>
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Portfolio Value Over Time</p>
+                <div className="h-64">
+                    <PortfolioChart history={data.history} />
+                </div>
             </div>
             <div className="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 h-80">
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Sector Allocation</p>
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sector Allocation</p>
+              <div className="h-64">
+                <SectorAllocationChart data={data.sectorAllocation} />
+              </div>
             </div>
           </section>
 
