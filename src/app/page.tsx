@@ -5,6 +5,7 @@ import { useDashboardData } from "../lib/use-dashboard-data";
 import { PortfolioChart } from "../components/portfolio-chart";
 import { SectorAllocationChart } from "../components/sector-allocation-chart";
 import { HoldingsTable } from "../components/holdings-table";
+import { DashboardSkeleton } from "../components/dashboard-skeleton";
 
 // Main dashboard page - orchestrates layout and data fetching
 export default function DashboardPage() {
@@ -33,9 +34,7 @@ export default function DashboardPage() {
       </header>
 
       {/* Loading state */}
-      {isLoading && (
-        <p className="text-gray-500 dark:text-gray-400">Loading dashboard data...</p>
-      )}
+      {isLoading && <DashboardSkeleton />}
 
       {/* Error state */}
       {error && (
