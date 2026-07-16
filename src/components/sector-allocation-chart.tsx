@@ -29,8 +29,6 @@ export function SectorAllocationChart({ data }: SectorAllocationChartProps) {
           cx="50%"
           cy="45%"
           outerRadius={70}
-          label={(entry) => `${entry.percent}%`}
-          labelLine={false}
         >
           {data.map((entry, index) => (
             <Cell key={entry.sector} fill={COLORS[index % COLORS.length]} />
