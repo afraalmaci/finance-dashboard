@@ -38,7 +38,12 @@ export default function DashboardPage() {
 
       {/* Error state */}
       {error && (
-        <p className="text-red-500 dark:text-red-400">Error: {error}</p>
+        <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-xl p-6 text-center">
+          <p className="text-red-700 dark:text-red-400 font-medium mb-1">
+            Couldn&apos;t load dashboard data
+          </p>
+          <p className="text-red-600 dark:text-red-500 text-sm">{error}</p>
+        </div>
       )}
 
       {/* Data loaded */}
@@ -68,9 +73,18 @@ export default function DashboardPage() {
             </div>
             <div className="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800">
               <p className="text-sm text-gray-500 dark:text-gray-400">Holdings</p>
-              <p className="text-xl font-semibold mt-1 text-gray-900 dark:text-gray-100">
-                {data.holdings.length}
-              </p>
+              { data.holdings.length === 0 ? (
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-12 text-center border border-gray-100 dark:border-gray-800">
+                  <p className="text-gray-500 dark:text-gray-400">No holdings yet</p>
+                  <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">
+                    Add your first investment to see it here
+                  </p>
+                </div>
+              ): ( 
+                <p className="text-xl font-semibold mt-1 text-gray-900 dark:text-gray-100">
+                  {data.holdings.length}
+                </p>
+              )}
             </div>
           </section>
 
