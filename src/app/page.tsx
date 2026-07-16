@@ -4,6 +4,7 @@ import { useDashboardStore } from "../store/dashboard-store";
 import { useDashboardData } from "../lib/use-dashboard-data";
 import { PortfolioChart } from "../components/portfolio-chart";
 import { SectorAllocationChart } from "../components/sector-allocation-chart";
+import { HoldingsTable } from "../components/holdings-table";
 
 // Main dashboard page - orchestrates layout and data fetching
 export default function DashboardPage() {
@@ -92,7 +93,8 @@ export default function DashboardPage() {
 
           {/* Holdings table (still placeholder) */}
           <section className="bg-white dark:bg-gray-900 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Holdings</p>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">Holdings</p>
+            <HoldingsTable holdings={data.holdings} />
           </section>
         </>
       )}
