@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Dashboard
+
+A responsive finance dashboard built to showcase frontend development skills, featuring interactive charts, sortable data tables, and dark mode support.
+
+## Features
+
+- Interactive portfolio value chart (line chart with tooltips)
+- Sector allocation breakdown (pie chart)
+- Sortable holdings table (by symbol, shares, price, gain/loss)
+- Dark mode toggle
+- Fully responsive (mobile, tablet, desktop)
+- Loading skeleton states and error handling
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** TailwindCSS
+- **Charts:** Recharts
+- **State Management:** Zustand
+- **Data:** Mock data served via Next.js API Routes
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    git clone https://github.com/afraalmaci/finance-dashboard.git
+    cd finance-dashboard
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the development server:
 
-## Learn More
+    npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+Open http://localhost:3000 in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    src/
+      app/
+        api/
+          dashboard-data/
+            route.ts              # mock data API endpoint
+        layout.tsx                 # root layout with theme provider
+        page.tsx                   # main dashboard page
+        globals.css                # global styles and Tailwind setup
+      components/
+        portfolio-chart.tsx        # portfolio value line chart
+        sector-allocation-chart.tsx # sector allocation pie chart
+        holdings-table.tsx         # sortable holdings table
+        dashboard-skeleton.tsx     # loading skeleton UI
+        theme-provider.tsx         # dark mode sync with Zustand store
+      lib/
+        mock-data.ts                # mock portfolio data generator
+        use-dashboard-data.ts       # custom data-fetching hook
+      store/
+        dashboard-store.ts          # Zustand global state (filters, dark mode)
+      types/
+        portfolio.ts                # TypeScript interfaces
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project uses mock data generated on the server (via a Next.js API route) rather than a live financial API, so it can be run and demoed without requiring API keys or external dependencies.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
