@@ -2,6 +2,10 @@
 
 A responsive finance dashboard built to showcase frontend development skills, featuring interactive charts, sortable data tables, and dark mode support.
 
+## Live Demo
+
+[finance-dashboard-mu-green.vercel.app](https://finance-dashboard-mu-green.vercel.app)
+
 ## Features
 
 - Interactive portfolio value chart (line chart with tooltips)
