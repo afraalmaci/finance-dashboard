@@ -73,30 +73,41 @@ export const mockHoldings: Holding[] = [
   },
 ];
 
-// Generates a mock history of total portfolio value for the past N days
-function generateHistory(days: number): PortfolioHistoryPoint[] {
-  const history: PortfolioHistoryPoint[] = [];
-  let value = 45000;
+// Generates a mock history of total portfolio value for the past N days,
+// walking backwards from today's real value so the data stays consistent
+function generateHistory(days: number, endValue: number): PortfolioHistoryPoint[] {
   const today = new Date();
+  const values: number[] = [endValue];
 
-  for (let i = days; i >= 0; i--) {
+  // Walk backwards from today's value, applying small reverse fluctuations
+  let value = endValue;
+  for (let i = 0; i < days; i++) {
+    const change = (Math.random() - 0.5) * 300;
+    value -= change;
+    values.unshift(value);
+  }
+
+  const history: PortfolioHistoryPoint[] = [];
+  for (let i = 0; i <= days; i++) {
     const date = new Date(today);
-    date.setDate(today.getDate() - i);
-
-    // Small random daily fluctuation to simulate market movement
-    const change = (Math.random() - 0.45) * 400;
-    value += change;
+    date.setDate(today.getDate() - (days - i));
 
     history.push({
       date: date.toISOString().split("T")[0],
-      totalValue: Math.round(value * 100) / 100,
+      totalValue: Math.round(values[i] * 100) / 100,
     });
   }
 
   return history;
 }
+// Calculate today's real total value from holdings first,
+// so the history array can end at a consistent value
+const currentTotalValue = mockHoldings.reduce(
+  (sum, h) => sum + h.shares * h.currentPrice,
+  0
+);
 
-export const mockHistory: PortfolioHistoryPoint[] = generateHistory(365);
+export const mockHistory: PortfolioHistoryPoint[] = generateHistory(365, currentTotalValue);
 
 // Calculates sector allocation percentages based on holdings
 function calculateSectorAllocation(holdings: Holding[]): SectorAllocation[] {
